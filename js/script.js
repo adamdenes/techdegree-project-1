@@ -19,7 +19,6 @@ const quotes = [
   {
     quote: 'The way to get started is to quit talking and begin doing.',
     source: 'Walt Disney',
-    citation: 'blog.hubspot.com',
     tags: 'Motivation'
   },
   {
@@ -49,7 +48,6 @@ const quotes = [
   {
     quote: 'Life is what happens when you\'re busy making other plans.',
     source: 'John Lennon',
-    citation: 'Quoteinvestigator',
     tags: 'Life',
     year: 1980
   },
@@ -85,43 +83,53 @@ function getRandomQuote() {
 
 // create an array with 3 random values 
 function getRandomColor() {
+
   // creating an array 
   const colorArr = [];
+
   // looping through the array to get random color numbers for rgb
   for (let i = 0; i < 3; i++){
      colorArr.push(Math.floor(Math.random() * 255) + 1);
   }
-  //console.log(colorArr)
   return colorArr;
 }
 
 // printQuote will manifest the object in the browser
 function printQuote() {
+
   // setting the random quote to a variable
   const randomQuoteObject = getRandomQuote();
-  // setting a random color number to ta variable
-  const color = getRandomColor();
-  //console.log(color)
-  // creating HTML string
-  let myHTML = `
-    <span> ${randomQuoteObject.tags} </span>
-    <p class="quote"> ${randomQuoteObject.quote} </p>
-    <p class="source"> ${randomQuoteObject.source}
-      <span class="citation"> ${randomQuoteObject.citation} </span>
-      <span class="year"> ${randomQuoteObject.year ? randomQuoteObject.year : ''} </span>
-    </p>
-    `;
 
   // selecting the div with the id of quote-box
   const div = document.querySelector('#quote-box');
-  // filling the div with the content of myHTML
-  div.innerHTML = myHTML;
+
+  // setting a random color number to ta variable
+  const color = getRandomColor();
+
+  // creating HTML string
+  let fullHTML = '';
+  fullHTML = '<span>' + randomQuoteObject.tags + '</span>';
+  fullHTML += '<p class="quote">' + randomQuoteObject.quote + '</p>';
+  fullHTML += '<p class="source">' + randomQuoteObject.source;
+
+  if (randomQuoteObject.citation) {
+    fullHTML += '<span class="citation">' + randomQuoteObject.citation + '</span>';
+  }
+  if (randomQuoteObject.year) {
+    fullHTML += '<span class="citation">' + randomQuoteObject.year + '</span>';
+  }
+  fullHTML += '</p>';
+
+  // filling the div with the content of HTML string
+    div.innerHTML = fullHTML;
+    
   // adding random background color upon click
   document.body.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
 }
 
 //  making page auto refresh every 20 seconds
 setInterval(printQuote, 20000);
+
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
