@@ -78,8 +78,6 @@ function getRandomQuote() {
   let random = Math.floor(Math.random() * quotes.length);
   return quotes[random];
 }
-// checking code
-//console.log(getRandomQuote());
 
 // create an array with 3 random values 
 function getRandomColor() {
@@ -103,7 +101,7 @@ function printQuote() {
   // selecting the div with the id of quote-box
   const div = document.querySelector('#quote-box');
 
-  // setting a random color number to ta variable
+  // setting a random color number from the array to a variable
   const color = getRandomColor();
 
   // creating HTML string
@@ -121,7 +119,7 @@ function printQuote() {
   fullHTML += '</p>';
 
   // filling the div with the content of HTML string
-    div.innerHTML = fullHTML;
+  div.innerHTML = fullHTML;
     
   // adding random background color upon click
   document.body.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
